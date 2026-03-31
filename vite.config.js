@@ -13,6 +13,11 @@ export default defineConfig({
     server: {
         watch: {
             ignored: ['**/storage/framework/views/**'],
+
         },
+        host: true,
+        port: 5173,
+        cors: true,
+        origin: 'http://127.0.0.1:5173',
     },
 });

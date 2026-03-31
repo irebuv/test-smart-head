@@ -45,6 +45,7 @@ services:
           DB_DATABASE: ${DB_DATABASE}
           DB_USERNAME: ${DB_USERNAME}
           DB_PASSWORD: ${DB_PASSWORD}
+      command: sh -c "chmod -R 777 storage bootstrap/cache && php-fpm"
 
   nginx:
       image: nginx:alpine

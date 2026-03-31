@@ -1,6 +1,6 @@
 # Test assignment for Smart Head
 
-Laravel v.12 + Bootstrap
+Laravel v.12 + Bootstrap + spatie for permissions/media + jwt
 
 # How to install
 
@@ -12,6 +12,17 @@ Laravel v.12 + Bootstrap
 
 4. docker compose exec backend composer install
 5. docker compose exec backend php artisan key:generate
-6. docker compose exec backend php artisan migrate
+6. docker compose exec backend php artisan migrate:fresh --seed
 7. docker compose exec backend php artisan storage:link
+8. Generate jwt secret: docker compose exec backend php artisan jwt:secret
+
+# Users
+
+Admin:
+- email: admin@mail.com
+- password: password
+
+Manager:
+- email: manager@mail.com
+- password: password
 
