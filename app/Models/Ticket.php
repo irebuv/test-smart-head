@@ -14,4 +14,9 @@ class Ticket extends Model
         'number',
         'email',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
