@@ -8,12 +8,26 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $query = Ticket::query()->select('tickets.*')
+            ->join('customers', 'customers.id', '=', 'tickets.customer_id');
 
-        
+        $sorts = [
+            'id' => 'tickets.id',
+            'status' => 'status',
+            'created' => 'tickets.created_at',
+            'email' => 'customers.email',
+            'number' => 'customers.number',
+        ];
 
-        $tickets = Ticket::query()->with('customer')->orderBy('created_at', 'desc')->get();
+        $sort = request('sort', 'id');
+        $direction = request('direction', 'desc');
 
-        return view('admin.admin', compact('tickets'));
+        $sortColumn = $sorts[$sort] ?? 'tickets.id';
+
+        $tickets = $query->with('customer')->orderBy($sortColumn, $direction)->get();
+
+        return view('admin.admin', compact('tickets', 'sort', 'direction'));
     }
 }

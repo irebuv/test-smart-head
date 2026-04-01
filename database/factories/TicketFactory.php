@@ -17,7 +17,7 @@ class TicketFactory extends Factory
      */
     public function definition(): array
     {
-        $status = fake()->randomElement(['new', 'in_progress', 'processed']);
+        $status = fake()->randomElement(['new', 'in_process', 'closed']);
 
         return [
             'customer_id' => Customer::factory(),
