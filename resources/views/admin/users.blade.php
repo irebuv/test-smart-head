@@ -9,7 +9,6 @@
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Created_at</th>
-          <th scope="col">Actions</th>
         </tr>
       </thead>
       @if (!empty($users))
@@ -20,7 +19,6 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
               <td>{{ $user->created_at }}</td>
-              <td>Actions</td>
             </tr>
           @endforeach
         </tbody>

@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y unzip git curl ffmpeg libzip-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "post_max_size=12M" >> /usr/local/etc/php/conf.d/uploads.ini
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
