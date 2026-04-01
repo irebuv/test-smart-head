@@ -16,3 +16,8 @@ main{
 .w-33 {
     width: 33.3333%;
 }
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}

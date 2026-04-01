@@ -1,3 +1,4 @@
+// Form in widget via AJAX to /api/tickets
 const form = document.getElementById("ticket-form");
 
 if (form) {

@@ -29,7 +29,7 @@
       <nav class="flex items-center justify-end gap-4">
         @auth
           <div class="d-flex flex-col gap-2">
-            <a href="{{ url('/admin') }}" class="btn btn-primary">
+            <a href="{{ url('/tickets') }}" class="btn btn-primary">
               Admin panel
             </a>
             <form action="{{ route('logout') }}" method="post">

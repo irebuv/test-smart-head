@@ -17,10 +17,9 @@
     <div class="col-md-3 mb-2 mb-md-0"> <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
         Admin panel </a> </div>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="{{route('admin')}}" class="nav-link px-2">Tickets</a></li>
+      <li><a href="{{route('tickets')}}" class="nav-link px-2">Tickets</a></li>
       <li><a href="{{route('customers')}}" href="#" class="nav-link px-2">Customers</a></li>
       <li><a href="{{route('users')}}" class="nav-link px-2">Users</a></li>
-      <li><a href="#" class="nav-link px-2">Permissions</a></li>
     </ul>
     @if (Route::has('login'))
       <nav class="flex items-center justify-end gap-4">

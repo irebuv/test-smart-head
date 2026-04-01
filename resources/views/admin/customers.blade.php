@@ -10,7 +10,6 @@
           <th scope="col">Number</th>
           <th scope="col">Email</th>
           <th scope="col">Created_at</th>
-          <th scope="col">Actions</th>
         </tr>
       </thead>
       @if (!empty($customers))
@@ -22,7 +21,6 @@
               <td>{{ $customer->email }}</td>
               <td>{{ $customer->number }}</td>
               <td>{{ $customer->created_at }}</td>
-              <td>Actions</td>
             </tr>
           @endforeach
         </tbody>
@@ -30,6 +28,5 @@
         <div>There's no data here</div>
       @endif
     </table>
-    @dump($customers)
   </section>
 @endsection

@@ -26,6 +26,5 @@
         <div>There's no data here</div>
       @endif
     </table>
-    @dump($users)
   </section>
 @endsection
