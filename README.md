@@ -2,6 +2,12 @@
 
 Laravel v.12 + Bootstrap + spatie for permissions/media 
 
+# Project is already deployed on
+
+http://test.mori-anime.uk:8081/
+
+Use it if you don't want to deploy
+
 # How to install
 
 1. Clone the repository
@@ -27,9 +33,11 @@ Manager:
 - email: manager@mail.com
 - password: password
 
-# Example for iframe
+# Example for iframe or you can use my test domain 
 
 <iframe src="http://your-domain.com/widget" height="820" width="500"></iframe>
+
+<iframe src="http://test.mori-anime.uk:8081/widget" height="850px" width="500px" ></iframe>
 
 # Api examples
 
