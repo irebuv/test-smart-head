@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +19,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $managerRole = Role::firstOrCreate(['name' => 'manager']);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@mail.com'],
+            [
+                'name' => 'admin',
+                'password' => Hash::make('password'),
+            ]
+        );
+        $admin->assignRole($adminRole);
+
+        $manager = User::firstOrCreate(
+            ['email' => 'manager@mail.com'],
+            [
+                'name' => 'manager',
+                'password' => Hash::make('password'),
+            ]
+        );
+        $manager->assignRole($managerRole);
+
+        $customers = Customer::factory()->count(10)->create();
+
+        foreach ($customers as $customer) {
+            $amount = rand(1, 2);
+            Ticket::factory()->count($amount)->create([
+                'customer_id' => $customer->id,
+            ]);
+        }
     }
 }
