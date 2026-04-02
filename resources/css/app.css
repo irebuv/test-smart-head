@@ -52,3 +52,7 @@ main{
     font-weight: 600;
     color: rgb(4, 113, 4);
 }
+iframe {
+  border: none;
+  outline: none;
+}
