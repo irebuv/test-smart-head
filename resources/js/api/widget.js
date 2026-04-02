@@ -5,14 +5,24 @@ if (form) {
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("ticket-form");
         const message = document.getElementById("form-message");
+        const success = document.getElementById("success-block");
 
         if (!form) return;
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            message.textContent = "";
-            message.className = "small";
+            console.log("submit started");
+
+            if (message) {
+                message.textContent = "";
+                message.className = "small";
+            }
+
+            if (success) {
+                success.classList.add("d-none");
+                success.classList.remove("d-flex");
+            }
 
             form.querySelectorAll(".form-control").forEach((input) => {
                 input.classList.remove("is-invalid");
@@ -33,17 +43,22 @@ if (form) {
                     body: formData,
                 });
 
-                const contentType = response.headers.get("content-type") || "";
+                console.log("status:", response.status);
 
-                let data = null;
+                const contentType = response.headers.get("content-type") || "";
+                console.log("content-type:", contentType);
+
+                let data;
 
                 if (contentType.includes("application/json")) {
                     data = await response.json();
-                    console.log(data);
+                    console.log("json data:", data);
                 } else {
-                    const text = await response.json();
-                    console.log(text);
-                    throw new Error(`Unexpected response: ${response.status}`);
+                    const text = await response.text();
+                    console.log("non-json response:", text);
+                    throw new Error(
+                        `Unexpected response type. Status: ${response.status}`,
+                    );
                 }
 
                 if (!response.ok) {
@@ -77,7 +92,7 @@ if (form) {
                                 }
                             },
                         );
-                    } else {
+                    } else if (message) {
                         message.textContent =
                             data.message ?? "Validation error";
                         message.classList.add("text-danger");
@@ -86,13 +101,34 @@ if (form) {
                     return;
                 }
 
-                message.textContent = data.message ?? "Successfully sent";
-                message.classList.add("text-success");
+                if (message) {
+                    message.textContent = data.message ?? "Successfully sent";
+                    message.classList.add("text-success");
+                }
+
+                if (success) {
+                    success.classList.remove("d-none");
+                    success.classList.add("d-flex");
+                }
+
                 form.reset();
             } catch (error) {
-                message.textContent = "Something went wrong";
-                message.classList.add("text-danger");
+                console.error("CATCH ERROR:", error);
+
+                if (message) {
+                    message.textContent = "Something went wrong";
+                    message.classList.add("text-danger");
+                }
             }
         });
+    });
+}
+
+const success = document.getElementById("success-block");
+
+if (success) {
+    success.addEventListener("click", () => {
+        success.classList.add("d-none");
+        success.classList.remove("d-flex");
     });
 }

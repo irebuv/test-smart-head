@@ -8,9 +8,12 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-transparent p-2" >
-    <div class="card shadow-sm border-0 p-4" style="max-width: 500px;">
-      <form id="ticket-form">
+<body class="bg-transparent p-2">
+  <div class="card shadow-sm border-0 position-relative" style="max-width: 500px;">
+    <div class="d-none" id="success-block">
+        <span>Sent <br> successfully</span>
+    </div>
+    <form id="ticket-form" class="p-4">
         <div>
           <label class="form-label" for="name">Your Name<span class="text-danger">*</span></label><br>
           <input class="form-control" id="name" type="text" name="name" placeholder="Write your name">
@@ -23,7 +26,7 @@
         </div>
         <div class="mt-4">
           <label class="form-label" for="number">Your number<span class="text-danger">*</span></label><br>
-          <input class="form-control" id="number" type="text" name="number" placeholder="Write your number">
+          <input class="form-control" id="number" type="text" name="number" placeholder="e.g. (+380501234567)">
           <span class="input-error text-danger" id="error-number"></span>
         </div>
         <div class="mt-4">
@@ -37,17 +40,18 @@
           <span class="input-error text-danger" id="error-theme"></span>
         </div>
         <div class="mt-4">
-            <label for="files" class="form-label">Files (optional)</label>
-            <input type="file" id="files" name="files[]" class="form-control" multiple>
-            <span class="text-light-emphasis"><span class="text-danger">*</span>only: png, jpeg, txt (max: 2MB)</span>
-            <span class="input-error text-danger" id="error-files"></span>
+          <label for="files" class="form-label">Files (optional)</label>
+          <input type="file" id="files" name="files[]" class="form-control" multiple>
+          <span class="text-light-emphasis"><span class="text-danger">*</span>only: png, jpeg, txt (max: 2MB)</span>
+          <span class="input-error text-danger" id="error-files"></span>
         </div>
 
         <div id="form-message" class="small mt-3"></div>
 
         <button type="submit" class="btn btn-primary mt-4">Submit</button>
-      </form>
-    </div>
+
+    </form>
+  </div>
 </body>
 
 </html>

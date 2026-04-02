@@ -15,12 +15,14 @@ class TicketController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|min:3',
-            'number' => 'required|min:8',
+            'number' => 'required|regex:/^\+[1-9]\d{7,14}$/',
             'email' => 'required|email',
             'theme' => 'required|string|min:5',
             'description' => 'nullable|string',
             'files' => 'nullable|array',
             'files.*' => 'file|mimes:png,jpeg,jpg,txt|max:2048',
+        ], [
+            'number.regex' => 'The number must be in E.164 format (e.g. +380501234567)'
         ]);
 
         try {
@@ -38,7 +40,8 @@ class TicketController extends Controller
                 'customer_id' => $customer->id,
                 'theme' => $validated['theme'],
                 'description' => $validated['description'],
-                'files' => $validated['files'],
+                'status' => 'new',
+                'answered_at' => null,
             ]);
 
             if ($request->hasFile('files')) {
